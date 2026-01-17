@@ -236,4 +236,4 @@ MIT License
 
 ---
 
-Made with ❤️ by SaasLandingKit Team
+Made with ❤️ by SpellCraft Team
