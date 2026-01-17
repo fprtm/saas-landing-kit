@@ -7,7 +7,7 @@
 
 export const VERSION = {
     /** Current version number (semver) */
-    number: "1.0.0",
+    number: "1.0.1",
     
     /** Release date (ISO format) */
     date: "2026-01-17",
