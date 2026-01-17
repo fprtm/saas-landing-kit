@@ -1,0 +1,42 @@
+---
+import Layout from "../components/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Problem from "../components/Problem.astro";
+import Solution from "../components/Solution.astro";
+import Benefits from "../components/Benefits.astro";
+import Trust from "../components/Trust.astro";
+import CTA from "../components/CTA.astro";
+
+import siteData from "../content/site.json";
+import type { SiteConfig } from "../types";
+
+const {
+  brand,
+  tagline,
+  theme,
+  hero,
+  problem,
+  solution,
+  benefits,
+  trust,
+  cta,
+  footer,
+  seo,
+} = siteData as SiteConfig;
+---
+
+<Layout seo={seo} brand={brand} tagline={tagline} theme={theme}>
+  <main id="main-content" role="main">
+    <Hero hero={hero} />
+
+    <Problem problem={problem} />
+
+    <Solution solution={solution} />
+
+    <Benefits benefits={benefits} />
+
+    <Trust trust={trust} />
+
+    <CTA cta={cta} brand={brand} footer={footer} />
+  </main>
+</Layout>

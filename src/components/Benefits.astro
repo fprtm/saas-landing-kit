@@ -1,0 +1,71 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { BenefitsProps } from '../types';
+
+type Props = BenefitsProps;
+
+const { benefits } = Astro.props;
+const { sectionTitle, sectionSubtitle, items } = benefits;
+
+const defaultIcons = ['lucide:clock', 'lucide:layers', 'lucide:trending-up', 'lucide:headphones'];
+---
+
+<section 
+  id="benefits" 
+  class="py-16 sm:py-20 lg:py-24 bg-neutral-50 dark:bg-neutral-800"
+  aria-labelledby="benefits-heading"
+>
+  <div class="container-section">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 id="benefits-heading" class="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+        {sectionTitle}
+      </h2>
+      <p class="text-lg text-neutral-600 dark:text-neutral-300">
+        {sectionSubtitle}
+      </p>
+    </div>
+    
+    <ul class="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto" role="list" aria-label="Key benefits">
+      {items.map((benefit, index) => (
+        <li class="group relative p-6 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-700 hover:shadow-xl hover:border-primary-200 dark:hover:border-primary-700 transition-all duration-300">
+          <!-- Metric Badge -->
+          <div class="absolute -top-3 right-4 px-3 py-1 bg-primary-600 text-white text-sm font-bold rounded-full shadow-lg">
+            {benefit.metric}
+          </div>
+          
+          <!-- Icon -->
+          <div class="inline-flex items-center justify-center w-14 h-14 mb-4 rounded-xl bg-primary-100 dark:bg-primary-900/50 group-hover:bg-primary-600 transition-colors duration-300" aria-hidden="true">
+            <Icon 
+              name={benefit.icon || defaultIcons[index % defaultIcons.length]} 
+              class="w-7 h-7 text-primary-600 dark:text-primary-400 group-hover:text-white transition-colors duration-300" 
+            />
+          </div>
+          
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+            {benefit.title}
+          </h3>
+          
+          <p class="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed mb-4">
+            {benefit.description}
+          </p>
+          
+          <!-- Metric Label -->
+          <p class="text-xs text-primary-600 dark:text-primary-400 font-medium uppercase tracking-wide mb-3">
+            {benefit.metricLabel}
+          </p>
+          
+          <!-- Mini CTA -->
+          {benefit.cta && (
+            <a 
+              href={benefit.cta.href}
+              class="inline-flex items-center text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
+            >
+              {benefit.cta.text}
+              <Icon name="lucide:chevron-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

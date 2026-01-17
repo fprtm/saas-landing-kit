@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { SolutionProps } from '../types';
+
+type Props = SolutionProps;
+
+const { solution } = Astro.props;
+const { sectionTitle, sectionSubtitle, steps } = solution;
+
+const defaultIcons = ['lucide:link', 'lucide:zap', 'lucide:bar-chart-2', 'lucide:rocket'];
+---
+
+<section 
+  id="solution" 
+  class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-neutral-900"
+  aria-labelledby="solution-heading"
+>
+  <div class="container-section">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 id="solution-heading" class="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+        {sectionTitle}
+      </h2>
+      <p class="text-lg text-neutral-600 dark:text-neutral-300">
+        {sectionSubtitle}
+      </p>
+    </div>
+    
+    <div class="space-y-16 max-w-5xl mx-auto">
+      {steps.map((item, index) => (
+        <div class={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center`}>
+          <!-- Visual Placeholder -->
+          <div class="w-full lg:w-1/2">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]">
+              {item.visualPath ? (
+                <img 
+                  src={item.visualPath} 
+                  alt={`Step ${item.step}: ${item.title}`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="bg-neutral-200 dark:bg-neutral-700 w-full h-full flex flex-col items-center justify-center">
+                  <div class="w-16 h-16 mb-4 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center">
+                    <Icon name={item.icon || defaultIcons[index % defaultIcons.length]} class="w-8 h-8 text-primary-600 dark:text-primary-400" />
+                  </div>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-sm font-medium">No Image Uploaded</span>
+                  <span class="text-neutral-400 dark:text-neutral-500 text-xs mt-1">Step {item.step} Visual</span>
+                </div>
+              )}
+            </div>
+          </div>
+          
+          <!-- Content -->
+          <div class="w-full lg:w-1/2">
+            <!-- Step Number -->
+            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-primary-600 text-white font-bold mb-4" aria-hidden="true">
+              {item.step}
+            </div>
+            
+            <h3 class="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
+              {item.title}
+            </h3>
+            
+            <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed mb-4">
+              {item.description}
+            </p>
+            
+            <!-- Benefit Microcopy -->
+            <div class="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium">
+              <Icon name="lucide:check-circle" class="w-5 h-5" />
+              <span>{item.benefit}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

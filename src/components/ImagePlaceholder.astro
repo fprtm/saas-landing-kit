@@ -1,0 +1,37 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+    /** Custom message to display */
+    message?: string;
+    /** Icon name from Lucide */
+    icon?: string;
+    /** Additional CSS classes */
+    class?: string;
+    /** Aspect ratio class (e.g., 'aspect-video', 'aspect-square', 'aspect-[4/3]') */
+    aspectRatio?: string;
+}
+
+const {
+    message = "No Image Uploaded",
+    icon = "lucide:image",
+    class: className = "",
+    aspectRatio = "",
+} = Astro.props;
+---
+
+<div
+    class:list={[
+        "bg-neutral-200 dark:bg-neutral-700 w-full rounded-lg flex flex-col items-center justify-center",
+        aspectRatio || "h-64",
+        className,
+    ]}
+>
+    <Icon
+        name={icon}
+        class="w-12 h-12 text-neutral-400 dark:text-neutral-500 mb-3"
+    />
+    <span class="text-neutral-500 dark:text-neutral-400 text-sm font-medium"
+        >{message}</span
+    >
+</div>

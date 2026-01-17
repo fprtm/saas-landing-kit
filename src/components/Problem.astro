@@ -1,0 +1,58 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { ProblemProps } from '../types';
+
+type Props = ProblemProps;
+
+const { problem } = Astro.props;
+const { sectionTitle, sectionSubtitle, items } = problem;
+
+// Default icons for problems
+const defaultIcons = ['lucide:clock', 'lucide:puzzle', 'lucide:trending-down', 'lucide:target'];
+---
+
+<section 
+  id="problem" 
+  class="py-16 sm:py-20 lg:py-24 bg-neutral-50 dark:bg-neutral-800"
+  aria-labelledby="problem-heading"
+>
+  <div class="container-section">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 id="problem-heading" class="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+        {sectionTitle}
+      </h2>
+      <p class="text-lg text-neutral-600 dark:text-neutral-300">
+        {sectionSubtitle}
+      </p>
+    </div>
+    
+    <ul class="grid gap-6 md:grid-cols-2 max-w-5xl mx-auto" role="list" aria-label="Common problems">
+      {items.map((item, index) => (
+        <li class="group relative p-6 bg-white dark:bg-neutral-900 rounded-2xl shadow-sm border border-neutral-200 dark:border-neutral-700 hover:shadow-lg hover:border-danger-200 dark:hover:border-danger-800 transition-all duration-300">
+          <!-- Icon -->
+          <div class="flex items-start gap-4 mb-4">
+            <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-xl bg-danger-100 dark:bg-danger-900/30 group-hover:bg-danger-200 dark:group-hover:bg-danger-900/50 transition-colors duration-300" aria-hidden="true">
+              <Icon name={item.icon || defaultIcons[index % defaultIcons.length]} class="w-6 h-6 text-danger-600 dark:text-danger-400" />
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+                {item.title}
+              </h3>
+            </div>
+          </div>
+          
+          <!-- Description (Storytelling) -->
+          <p class="text-neutral-600 dark:text-neutral-300 leading-relaxed mb-4">
+            {item.description}
+          </p>
+          
+          <!-- Microcopy / Stat -->
+          <div class="flex items-center gap-2 text-sm text-danger-600 dark:text-danger-400 font-medium">
+            <Icon name="lucide:info" class="w-4 h-4" />
+            <span>{item.microcopy}</span>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

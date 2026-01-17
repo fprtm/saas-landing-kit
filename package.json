@@ -1,0 +1,25 @@
+{
+  "name": "saas-landing-kit-engine",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Production-ready SaaS landing page boilerplate with Astro + Tailwind CSS 4",
+  "author": "SaasLandingKit Team",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "version": "echo \"SaasLandingKit Engine v$(node -p \"require('./package.json').version\")\""
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.82",
+    "@tailwindcss/vite": "^4.1.18",
+    "astro": "^5.16.6",
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.1.18"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

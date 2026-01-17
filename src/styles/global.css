@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/* Enable class-based dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   THEME CONFIGURATION
+   These are DEFAULT values that can be overridden
+   by runtime injection via Layout.astro
+   
+   Dynamic theming works by injecting CSS variables
+   into :root that override these defaults.
+   ============================================ */
+@theme {
+    /* ─────────────────────────────────────────
+     FONTS
+     ───────────────────────────────────────── */
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji";
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        monospace;
+
+    /* ─────────────────────────────────────────
+     PRIMARY BRAND COLOR
+     Main brand color used for buttons, links, accents
+     ───────────────────────────────────────── */
+    --color-primary-50: oklch(97.7% 0.013 236.62);
+    --color-primary-100: oklch(95.1% 0.026 236.824);
+    --color-primary-200: oklch(90.1% 0.058 230.902);
+    --color-primary-300: oklch(82.8% 0.111 230.318);
+    --color-primary-400: oklch(74.6% 0.16 232.661);
+    --color-primary-500: oklch(68.5% 0.169 237.323);
+    --color-primary-600: oklch(58.8% 0.158 241.966);
+    --color-primary-700: oklch(50% 0.134 242.749);
+    --color-primary-800: oklch(44.3% 0.11 240.79);
+    --color-primary-900: oklch(39.1% 0.09 240.876);
+    --color-primary-950: oklch(29.3% 0.066 243.157);
+
+    /* ─────────────────────────────────────────
+     ACCENT COLOR (Optional secondary brand color)
+     Used for highlights, hover states, etc.
+     ───────────────────────────────────────── */
+    --color-accent-50: oklch(97.7% 0.014 308.299);
+    --color-accent-100: oklch(94.6% 0.033 307.174);
+    --color-accent-200: oklch(90.2% 0.063 306.703);
+    --color-accent-300: oklch(82.7% 0.119 306.383);
+    --color-accent-400: oklch(71.4% 0.203 305.504);
+    --color-accent-500: oklch(62.7% 0.265 303.9);
+    --color-accent-600: oklch(55.8% 0.288 302.321);
+    --color-accent-700: oklch(49.6% 0.265 301.924);
+    --color-accent-800: oklch(43.8% 0.218 303.724);
+    --color-accent-900: oklch(38.1% 0.176 304.987);
+    --color-accent-950: oklch(29.1% 0.149 302.717);
+
+    /* ─────────────────────────────────────────
+     NEUTRAL / GRAY COLORS
+     Used for text, backgrounds, borders
+     ───────────────────────────────────────── */
+    --color-neutral-50: oklch(98.5% 0 0);
+    --color-neutral-100: oklch(97% 0 0);
+    --color-neutral-200: oklch(92.2% 0 0);
+    --color-neutral-300: oklch(87% 0 0);
+    --color-neutral-400: oklch(70.8% 0 0);
+    --color-neutral-500: oklch(55.6% 0 0);
+    --color-neutral-600: oklch(43.9% 0 0);
+    --color-neutral-700: oklch(37.1% 0 0);
+    --color-neutral-800: oklch(26.9% 0 0);
+    --color-neutral-900: oklch(20.5% 0 0);
+    --color-neutral-950: oklch(14.5% 0 0);
+
+    /* ─────────────────────────────────────────
+     SEMANTIC COLORS
+     Use these for specific meanings only!
+     ───────────────────────────────────────── */
+
+    /* DANGER - Errors, destructive actions, problems */
+    --color-danger-50: oklch(97.1% 0.013 17.38);
+    --color-danger-100: oklch(93.6% 0.032 17.717);
+    --color-danger-200: oklch(88.5% 0.062 18.334);
+    --color-danger-300: oklch(80.8% 0.114 19.571);
+    --color-danger-400: oklch(70.4% 0.191 22.216);
+    --color-danger-500: oklch(63.7% 0.237 25.331);
+    --color-danger-600: oklch(57.7% 0.245 27.325);
+    --color-danger-700: oklch(50.5% 0.213 27.518);
+    --color-danger-800: oklch(44.4% 0.177 26.899);
+    --color-danger-900: oklch(39.6% 0.141 25.723);
+    --color-danger-950: oklch(25.8% 0.092 26.042);
+
+    /* SUCCESS - Positive states, confirmations, solutions */
+    --color-success-50: oklch(98.2% 0.018 155.826);
+    --color-success-100: oklch(96.2% 0.044 156.743);
+    --color-success-200: oklch(92.5% 0.084 155.995);
+    --color-success-300: oklch(87.1% 0.15 154.449);
+    --color-success-400: oklch(79.2% 0.209 151.711);
+    --color-success-500: oklch(72.3% 0.219 149.579);
+    --color-success-600: oklch(62.7% 0.194 149.214);
+    --color-success-700: oklch(52.7% 0.154 150.069);
+    --color-success-800: oklch(44.8% 0.119 151.328);
+    --color-success-900: oklch(39.3% 0.095 152.535);
+    --color-success-950: oklch(26.6% 0.065 152.934);
+
+    /* WARNING - Caution, attention needed */
+    --color-warning-50: oklch(98.7% 0.026 102.212);
+    --color-warning-100: oklch(97.3% 0.071 103.193);
+    --color-warning-200: oklch(94.5% 0.129 101.54);
+    --color-warning-300: oklch(90.5% 0.182 98.111);
+    --color-warning-400: oklch(85.2% 0.199 91.936);
+    --color-warning-500: oklch(79.5% 0.184 86.047);
+    --color-warning-600: oklch(68.1% 0.162 75.834);
+    --color-warning-700: oklch(55.4% 0.135 66.442);
+    --color-warning-800: oklch(47.6% 0.114 61.907);
+    --color-warning-900: oklch(42.1% 0.095 57.708);
+    --color-warning-950: oklch(28.6% 0.066 53.813);
+
+    /* INFO - Informational, tips, notes */
+    --color-info-50: oklch(97% 0.014 254.604);
+    --color-info-100: oklch(93.2% 0.032 255.585);
+    --color-info-200: oklch(88.2% 0.059 254.128);
+    --color-info-300: oklch(80.9% 0.105 251.813);
+    --color-info-400: oklch(70.7% 0.165 254.624);
+    --color-info-500: oklch(62.3% 0.214 259.815);
+    --color-info-600: oklch(54.6% 0.245 262.881);
+    --color-info-700: oklch(48.8% 0.243 264.376);
+    --color-info-800: oklch(42.4% 0.199 265.638);
+    --color-info-900: oklch(37.9% 0.146 265.522);
+    --color-info-950: oklch(28.2% 0.091 267.935);
+
+    /* ─────────────────────────────────────────
+     SPACING
+     ───────────────────────────────────────── */
+    --spacing: 0.25rem;
+
+    /* ─────────────────────────────────────────
+     BREAKPOINTS
+     ───────────────────────────────────────── */
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 64rem;
+    --breakpoint-xl: 80rem;
+    --breakpoint-2xl: 96rem;
+
+    /* ─────────────────────────────────────────
+     BORDER RADIUS
+     ───────────────────────────────────────── */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+
+    /* ─────────────────────────────────────────
+     SHADOWS
+     ───────────────────────────────────────── */
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+    /* ─────────────────────────────────────────
+     ANIMATIONS
+     ───────────────────────────────────────── */
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --animate-spin: spin 1s linear infinite;
+    --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes pulse {
+        50% {
+            opacity: 0.5;
+        }
+    }
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply font-sans text-neutral-800 bg-white antialiased transition-colors duration-300;
+    }
+
+    html.dark body {
+        @apply bg-neutral-900 text-neutral-100;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-semibold tracking-tight;
+    }
+
+    :focus-visible {
+        @apply outline-2 outline-offset-2 outline-primary-500;
+    }
+
+    .skip-link {
+        @apply absolute -top-10 left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50 transition-all;
+    }
+
+    .skip-link:focus {
+        @apply top-4;
+    }
+}
+
+/* ============================================
+   COMPONENTS
+   ============================================ */
+@layer components {
+    .container-section {
+        @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500 transition-colors duration-200;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-700 bg-primary-100 rounded-lg hover:bg-primary-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500 transition-colors duration-200;
+    }
+}

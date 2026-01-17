@@ -1,0 +1,111 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { TrustProps } from '../types';
+
+type Props = TrustProps;
+
+const { trust } = Astro.props;
+const { sectionTitle, sectionSubtitle, metrics, testimonials, logos } = trust;
+---
+
+<section 
+  id="trust" 
+  class="py-16 sm:py-20 lg:py-24 bg-white dark:bg-neutral-900"
+  aria-labelledby="trust-heading"
+>
+  <div class="container-section">
+    <!-- Header -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 id="trust-heading" class="text-3xl sm:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+        {sectionTitle}
+      </h2>
+      <p class="text-lg text-neutral-600 dark:text-neutral-300">
+        {sectionSubtitle}
+      </p>
+    </div>
+    
+    <!-- Metrics - Horizontal on desktop, stack on mobile -->
+    <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-6 mb-16 max-w-4xl mx-auto">
+      {metrics.map((metric) => (
+        <div class="flex-1 min-w-[140px] text-center p-6 bg-neutral-50 dark:bg-neutral-800 rounded-2xl">
+          <span class="block text-3xl sm:text-4xl font-bold text-primary-600 dark:text-primary-400 mb-1">{metric.value}</span>
+          <span class="block text-sm font-medium text-neutral-900 dark:text-white">{metric.label}</span>
+          {metric.description && (
+            <span class="block text-xs text-neutral-500 dark:text-neutral-400 mt-1">{metric.description}</span>
+          )}
+        </div>
+      ))}
+    </div>
+    
+    <!-- Testimonials -->
+    {testimonials.length > 0 && (
+      <div class="mb-16">
+        <h3 class="sr-only">Customer Testimonials</h3>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {testimonials.map((testimonial) => (
+            <article class="p-6 bg-neutral-50 dark:bg-neutral-800 rounded-2xl">
+              <!-- Quote -->
+              <blockquote class="mb-6">
+                <Icon name="lucide:quote" class="w-8 h-8 text-primary-200 dark:text-primary-800 mb-4" />
+                <p class="text-neutral-700 dark:text-neutral-200 leading-relaxed italic">
+                  "{testimonial.quote}"
+                </p>
+              </blockquote>
+              
+              <!-- Author -->
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center">
+                  {testimonial.photoPath ? (
+                    <img 
+                      src={testimonial.photoPath} 
+                      alt={testimonial.name}
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div class="bg-neutral-200 dark:bg-neutral-700 w-full h-full flex items-center justify-center">
+                      <Icon name="lucide:user" class="w-6 h-6 text-neutral-400 dark:text-neutral-500" />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <p class="font-semibold text-neutral-900 dark:text-white">{testimonial.name}</p>
+                  <p class="text-sm text-neutral-500 dark:text-neutral-400">
+                    {testimonial.role}{testimonial.company && `, ${testimonial.company}`}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+    
+    <!-- Client Logos (Optional) -->
+    {logos && logos.length > 0 && (
+      <div class="border-t border-neutral-200 dark:border-neutral-700 pt-12">
+        <p class="text-center text-sm text-neutral-500 dark:text-neutral-400 mb-8 uppercase tracking-wide font-medium">
+          Trusted by leading companies
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+          {logos.map((logo) => (
+            <div class="w-24 h-12 flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity duration-300">
+              {logo.path ? (
+                <img 
+                  src={logo.path} 
+                  alt={logo.name}
+                  class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="bg-neutral-200 dark:bg-neutral-700 w-full h-full rounded-lg flex items-center justify-center">
+                  <span class="text-neutral-500 dark:text-neutral-400 font-medium text-xs">{logo.name}</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
+</section>

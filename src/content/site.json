@@ -1,0 +1,197 @@
+{
+    "brand": "SaasLandingKit",
+    "tagline": "Work Smarter. Launch Faster.",
+
+    "theme": {
+        "primaryColor": "#0284c7",
+        "accentColor": "#a855f7",
+        "fontFamily": "Inter",
+        "borderRadius": "lg",
+        "defaultColorMode": "system"
+    },
+
+    "hero": {
+        "headline": "Build High-Converting Landing Pages — Faster Than Ever",
+        "subheadline": "Skip setup, design tools, and technical headaches. Generate a beautiful, conversion-ready landing page in minutes and focus on growing your business.",
+        "emotionalHook": "Trusted by 10,000+ indie hackers and founders who ship faster without code.",
+        "primaryCta": {
+            "text": "Start Free",
+            "subtext": "No credit card required • Live in 2 minutes"
+        },
+        "secondaryCta": {
+            "text": "Watch Demo",
+            "subtext": "See a landing page generated in real time"
+        },
+        "visualPath": "/images/hero-mockup.jpg",
+        "visualAlt": "AI-generated landing page preview with live content editor"
+    },
+
+    "problem": {
+        "sectionTitle": "Sound Familiar?",
+        "sectionSubtitle": "Launching fast shouldn't feel this hard.",
+        "items": [
+            {
+                "title": "Stuck Setting Up Instead of Launching",
+                "description": "You waste hours choosing templates, tweaking layouts, and wiring tools—before your product even ships.",
+                "microcopy": "Most founders spend more time setting up tools than validating ideas.",
+                "icon": "lucide:clock"
+            },
+            {
+                "title": "Design & Copy Are a Bottleneck",
+                "description": "You're not a designer or copywriter, but your landing page still needs to look credible and convert.",
+                "microcopy": "First impressions decide in under 5 seconds.",
+                "icon": "lucide:pen-tool"
+            },
+            {
+                "title": "Too Many Tools, Too Much Friction",
+                "description": "Page builders, hosting, domains, analytics—every extra tool slows you down.",
+                "microcopy": "Complex stacks kill momentum.",
+                "icon": "lucide:puzzle"
+            },
+            {
+                "title": "Ideas Die Before They Launch",
+                "description": "By the time your page is ready, motivation fades or the opportunity passes.",
+                "microcopy": "Speed is the real competitive advantage.",
+                "icon": "lucide:rocket"
+            }
+        ]
+    },
+
+    "solution": {
+        "sectionTitle": "How SaasLandingKit Works",
+        "sectionSubtitle": "From idea to live landing page in minutes.",
+        "steps": [
+            {
+                "step": 1,
+                "title": "Describe Your Idea",
+                "description": "Tell SaasLandingKit what you're building and who it's for. No prompts engineering required.",
+                "benefit": "Clarity without overthinking.",
+                "visualPath": "/images/demo/unnamed (1).jpg",
+                "icon": "lucide:message-square"
+            },
+            {
+                "step": 2,
+                "title": "Generate the Landing Page",
+                "description": "SaasLandingKit creates layout, copy, and structure optimized for conversion.",
+                "benefit": "Design + copy done instantly.",
+                "visualPath": "/images/demo/unnamed 2.jpg",
+                "icon": "lucide:wand-2"
+            },
+            {
+                "step": 3,
+                "title": "Customize & Publish",
+                "description": "Edit text, tweak sections, and publish instantly—hosting included.",
+                "benefit": "No setup. No deployment.",
+                "visualPath": "/images/demo/unnamed (3).jpg",
+                "icon": "lucide:send"
+            }
+        ]
+    },
+
+    "benefits": {
+        "sectionTitle": "Why Founders Choose SaasLandingKit",
+        "sectionSubtitle": "Everything you need to launch fast—nothing you don't.",
+        "items": [
+            {
+                "title": "Launch in Minutes",
+                "description": "Go from idea to live landing page without touching code or configs.",
+                "metric": "< 5 min",
+                "metricLabel": "to first draft",
+                "icon": "lucide:zap",
+                "cta": null
+            },
+            {
+                "title": "Conversion-Focused by Default",
+                "description": "Layouts and copy are designed to capture attention and drive action.",
+                "metric": "Built-in",
+                "metricLabel": "best practices",
+                "icon": "lucide:target",
+                "cta": null
+            },
+            {
+                "title": "Zero Setup Required",
+                "description": "No hosting, domains, or integrations to worry about.",
+                "metric": "0",
+                "metricLabel": "setup steps",
+                "icon": "lucide:check-circle",
+                "cta": null
+            },
+            {
+                "title": "Made for Indie & Non-Tech Founders",
+                "description": "Simple, opinionated, and focused on outcomes—not features.",
+                "metric": "10K+",
+                "metricLabel": "founders",
+                "icon": "lucide:users",
+                "cta": null
+            }
+        ]
+    },
+
+    "trust": {
+        "sectionTitle": "Loved by Builders Worldwide",
+        "sectionSubtitle": "From side projects to serious startups.",
+        "mainQuote": null,
+        "metrics": [
+            { "value": "10K+", "label": "Pages Created", "description": null },
+            { "value": "4.9/5", "label": "User Rating", "description": null },
+            { "value": "120+", "label": "Countries", "description": null }
+        ],
+        "testimonials": [
+            {
+                "name": "Alex Morgan",
+                "role": "Indie Hacker",
+                "company": null,
+                "photoPath": "/images/testimonials/alex.jpg",
+                "quote": "SaasLandingKit helped me launch my idea the same day. No design stress, no setup hell."
+            },
+            {
+                "name": "Nina Patel",
+                "role": "Non-Tech Founder",
+                "company": null,
+                "photoPath": "/images/testimonials/nina.jpg",
+                "quote": "I finally shipped a landing page without asking a developer for help."
+            }
+        ],
+        "logos": []
+    },
+
+    "cta": {
+        "sectionTitle": "Ship Your Idea Today",
+        "sectionSubtitle": "Stop planning. Start launching.",
+        "primaryCta": {
+            "text": "Start Free",
+            "subtext": "No credit card required"
+        },
+        "secondaryCta": {
+            "text": "See Demo",
+            "subtext": "Watch SaasLandingKit in action"
+        },
+        "features": []
+    },
+
+    "footer": {
+        "description": "Empowering builders to launch faster and focus on what matters most.",
+        "copyright": "SaasLandingKit. All rights reserved.",
+        "links": [
+            { "text": "Privacy", "href": "/privacy" },
+            { "text": "Terms", "href": "/terms" },
+            { "text": "Contact", "href": "/contact" }
+        ],
+        "newsletter": null,
+        "social": {
+            "twitter": "#",
+            "linkedin": "#",
+            "github": "#"
+        }
+    },
+
+    "seo": {
+        "lang": "en",
+        "title": "SaasLandingKit — Generate Landing Pages Faster",
+        "description": "SaasLandingKit helps indie hackers and non-tech founders generate high-converting landing pages in minutes. No setup. No code. Start free.",
+        "keywords": "landing page generator, indie hackers, startup landing page, no code landing page, SaaS landing",
+        "canonical": "https://saas-landing-kit.ai",
+        "ogImage": "/og-image.png",
+        "twitterHandle": "@saas-landing-kit"
+    }
+}

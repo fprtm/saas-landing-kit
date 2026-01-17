@@ -1,0 +1,194 @@
+---
+import { Icon } from "astro-icon/components";
+import type { CTAProps } from "../types";
+
+type Props = CTAProps;
+
+const { cta, brand, footer } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<section
+  id="cta"
+  class="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800"
+  aria-labelledby="cta-heading"
+>
+  <div class="container-section">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2
+        id="cta-heading"
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"
+      >
+        {cta.sectionTitle}
+      </h2>
+      <p class="text-lg sm:text-xl text-primary-100 mb-10 max-w-xl mx-auto">
+        {cta.sectionSubtitle}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
+      >
+        <!-- Primary CTA -->
+        <div class="flex flex-col items-center">
+          <a
+            href="#"
+            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-xl hover:bg-primary-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-700 focus-visible:ring-white transition-colors duration-200 w-full sm:w-auto"
+            aria-label={`${cta.primaryCta.text} - ${cta.primaryCta.subtext}`}
+          >
+            {cta.primaryCta.text}
+            <Icon name="lucide:arrow-right" class="w-5 h-5 ml-2" />
+          </a>
+          <span class="text-sm text-primary-200 mt-2"
+            >{cta.primaryCta.subtext}</span
+          >
+        </div>
+
+        <!-- Secondary CTA -->
+        {
+          cta.secondaryCta && (
+            <div class="flex flex-col items-center">
+              <a
+                href="#"
+                class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white border-2 border-white/30 rounded-xl hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-700 focus-visible:ring-white transition-colors duration-200 w-full sm:w-auto"
+                aria-label={`${cta.secondaryCta.text} - ${cta.secondaryCta.subtext}`}
+              >
+                <Icon name="lucide:play-circle" class="w-5 h-5 mr-2" />
+                {cta.secondaryCta.text}
+              </a>
+              <span class="text-sm text-primary-200 mt-2">
+                {cta.secondaryCta.subtext}
+              </span>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Features List (Optional) -->
+      {
+        cta.features && cta.features.length > 0 && (
+          <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-primary-200">
+            {cta.features.map((feature) => (
+              <div class="flex items-center gap-2">
+                <Icon name="lucide:check" class="w-4 h-4 text-primary-300" />
+                <span>{feature}</span>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 bg-neutral-900 dark:bg-neutral-950" role="contentinfo">
+  <div class="container-section">
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 mb-12">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <h3 class="text-xl font-bold text-white mb-4">{brand}</h3>
+        <p class="text-neutral-400 text-sm max-w-md">
+          {footer.description}
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4
+          class="text-sm font-semibold text-white uppercase tracking-wide mb-4"
+        >
+          Quick Links
+        </h4>
+        <nav class="space-y-2" aria-label="Footer navigation">
+          {
+            footer.links.map((link) => (
+              <a
+                href={link.href}
+                class="block text-neutral-400 hover:text-white text-sm transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded"
+              >
+                {link.text}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <!-- Newsletter (Optional) -->
+      {
+        footer.newsletter && (
+          <div>
+            <h4 class="text-sm font-semibold text-white uppercase tracking-wide mb-4">
+              {footer.newsletter.title}
+            </h4>
+            <p class="text-neutral-400 text-sm mb-4">
+              {footer.newsletter.description}
+            </p>
+            <form class="flex gap-2" onsubmit="return false;">
+              <label for="newsletter-email" class="sr-only">
+                Email address
+              </label>
+              <input
+                type="email"
+                id="newsletter-email"
+                placeholder={footer.newsletter.placeholder}
+                class="flex-1 px-4 py-2 bg-neutral-800 border border-neutral-700 rounded-lg text-white placeholder-neutral-500 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              />
+              <button
+                type="submit"
+                class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              >
+                {footer.newsletter.buttonText}
+              </button>
+            </form>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Bottom Bar -->
+    <div
+      class="border-t border-neutral-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+    >
+      <p class="text-neutral-400 text-sm">
+        © {currentYear}
+        {footer.copyright}
+      </p>
+
+      <!-- Social Links -->
+      {
+        footer.social && (
+          <div class="flex items-center gap-4">
+            {footer.social.twitter && (
+              <a
+                href={footer.social.twitter}
+                class="text-neutral-400 hover:text-white transition-colors"
+                aria-label="Twitter"
+              >
+                <Icon name="lucide:twitter" class="w-5 h-5" />
+              </a>
+            )}
+            {footer.social.linkedin && (
+              <a
+                href={footer.social.linkedin}
+                class="text-neutral-400 hover:text-white transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Icon name="lucide:linkedin" class="w-5 h-5" />
+              </a>
+            )}
+            {footer.social.github && (
+              <a
+                href={footer.social.github}
+                class="text-neutral-400 hover:text-white transition-colors"
+                aria-label="GitHub"
+              >
+                <Icon name="lucide:github" class="w-5 h-5" />
+              </a>
+            )}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,151 @@
+---
+import { Icon } from "astro-icon/components";
+import "../styles/global.css";
+import type { LayoutProps } from "../types";
+import { generateThemeCSS, BORDER_RADIUS_VALUES } from "../utils/colors";
+import { VERSION } from "../version";
+
+type Props = LayoutProps;
+
+const { seo, brand, theme } = Astro.props;
+const lang = seo.lang || "en";
+const { title, description, canonical, ogImage } = seo;
+
+// Generate dynamic theme CSS if theme is provided
+let themeCSS = "";
+let themeColor = "#0284c7"; // Default primary color
+
+if (theme) {
+  themeCSS = generateThemeCSS(
+    theme.primaryColor,
+    theme.accentColor,
+    theme.fontFamily,
+  );
+  themeColor = theme.primaryColor;
+
+  // Add border radius override if specified
+  if (theme.borderRadius) {
+    const radiusValue = BORDER_RADIUS_VALUES[theme.borderRadius] || "0.5rem";
+    themeCSS += `\n    --radius-default: ${radiusValue};`;
+  }
+}
+
+// Determine default color mode script
+const defaultColorMode = theme?.defaultColorMode || "system";
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content={brand} />
+
+    <!-- Canonical -->
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:width" content="1200" />}
+    {ogImage && <meta property="og:image:height" content="630" />}
+    {ogImage && <meta property="og:image:alt" content={title} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {ogImage && <meta name="twitter:image:alt" content={title} />}
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og-image.png" />
+    <meta name="theme-color" content={themeColor} />
+
+    <!-- Custom Font (if specified) -->
+    {theme?.fontUrl && <link rel="stylesheet" href={theme.fontUrl} />}
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="version" content={VERSION.number} />
+
+    <!-- Dynamic Theme CSS Injection -->
+    {themeCSS && <style is:inline set:html={`:root {\n    ${themeCSS}\n}`} />}
+
+    <!-- Dark mode script (runs before paint to prevent flash) -->
+    <script is:inline define:vars={{ defaultColorMode }}>
+      (function () {
+        const stored = localStorage.getItem("theme");
+
+        if (stored === "dark") {
+          document.documentElement.classList.add("dark");
+        } else if (stored === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          // No stored preference, use default
+          if (defaultColorMode === "dark") {
+            document.documentElement.classList.add("dark");
+          } else if (defaultColorMode === "system") {
+            if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+              document.documentElement.classList.add("dark");
+            }
+          }
+          // 'light' mode = don't add dark class
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link"> Skip to main content </a>
+
+    <!-- Dark mode toggle -->
+    <button
+      id="theme-toggle"
+      type="button"
+      aria-label="Toggle dark mode"
+      class="fixed top-4 right-4 z-50 p-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-primary-500"
+    >
+      <!-- Sun icon (shown in dark mode) -->
+      <Icon
+        name="lucide:sun"
+        class="w-5 h-5 hidden dark:block text-yellow-400"
+      />
+      <!-- Moon icon (shown in light mode) -->
+      <Icon
+        name="lucide:moon"
+        class="w-5 h-5 block dark:hidden text-neutral-700"
+      />
+    </button>
+
+    <slot />
+
+    <!-- Dark mode toggle script -->
+    <script is:inline>
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.documentElement;
+        if (html.classList.contains("dark")) {
+          html.classList.remove("dark");
+          localStorage.setItem("theme", "light");
+        } else {
+          html.classList.add("dark");
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>
