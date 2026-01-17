@@ -1,6 +1,11 @@
 # SaasLandingKit Engine
+Light Mode
+<img width="1905" height="952" alt="image" src="https://github.com/user-attachments/assets/3684ae0c-a4f8-4b5c-b419-57d4193c9366" />
+Dark Mode
+<img width="1903" height="948" alt="image" src="https://github.com/user-attachments/assets/6810de2e-8718-4531-98fa-65030844336e" />
 
-> **v1.0.0** • Production-ready SaaS landing page boilerplate
+
+> **v1.0.1** • Production-ready SaaS landing page boilerplate
 
 A content-driven landing page framework built with **Astro 5** + **Tailwind CSS 4**. Edit a single JSON file to customize your entire landing page.
 
